@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class character : MonoBehaviour
+public class Character : MonoBehaviour
 {
    public float speed = 10f;
        public float jumpForce = 5f;
