@@ -27,11 +27,11 @@ public class Character : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        rb.velocity = new Vector3(move * speed, rb.velocity.y,0);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce,0);
              
         }
     }
