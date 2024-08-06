@@ -29,7 +29,7 @@ public class Fake_item : MonoBehaviour
         {
             
             Instantiate(effect,transform.position,Quaternion.identity);
-            player.speed -= 3;
+            player.speed *= -3;
             Destroy(gameObject);
             player.delay = true;
         }

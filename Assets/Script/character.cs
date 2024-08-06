@@ -13,11 +13,24 @@ public class character : MonoBehaviour
   public bool delay;
     private float time;
     private int timer = 1;
+    public GameObject spawner;
+    private bool touch=false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         speed = 1f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+     
+        if (other.gameObject.CompareTag("fall"))
+        {
+            Debug.Log("DDD");
+            touch = true;
+
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)
@@ -26,6 +39,8 @@ public class character : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -76,6 +91,14 @@ public class character : MonoBehaviour
                 delay = false;
                 speed = 1;
 
+            }
+        }
+        while (touch)
+        {
+            transform.position = spawner.transform.position;
+            if (transform.position.y == spawner.transform.position.y)
+            {
+                touch = false;
             }
         }
     }
