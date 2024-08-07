@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - wall
+  - Fake
+  - fna
+  - Player1
   layers:
   - Default
   - TransparentFX
