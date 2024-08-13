@@ -10,6 +10,8 @@ public class cango : MonoBehaviour
     public Text text;
     public GameObject player;
     private bool go = false;
+
+    public int apple;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +21,14 @@ public class cango : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cango1<=3)
+        Debug.Log(cango1);
+        if (cango1<apple)
         {
-            text.text = cango1 + "/3";
+            text.text = cango1 + "/"+apple;
         }
-        else
+        else if(cango1>=apple)
         {
+            text.text = cango1 + "/" + apple;
             go = true;
         }
 

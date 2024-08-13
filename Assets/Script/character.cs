@@ -14,7 +14,7 @@ public class character : MonoBehaviour
     private float time;
     private int timer = 1;
     public GameObject spawner;
-    private bool touch=false;
+    public bool touch=false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

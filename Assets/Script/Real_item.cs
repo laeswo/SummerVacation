@@ -14,9 +14,9 @@ public class Real_item : MonoBehaviour
         
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             cg.cango1 += 1;
             Instantiate(effect,transform.position,Quaternion.identity);
