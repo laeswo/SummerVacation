@@ -9,11 +9,13 @@ public class Character : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private Animator animator;
+    private SpriteRenderer spriteRenderer; // 스프라이트 렌더러 추가
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // 스프라이트 렌더러 초기화
     }
 
     void Update()
@@ -26,6 +28,16 @@ public class Character : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
+
+        // 방향 전환
+        if (move > 0)
+        {
+            spriteRenderer.flipX = false; // 오른쪽을 바라봄
+        }
+        else if (move < 0)
+        {
+            spriteRenderer.flipX = true; // 왼쪽을 바라봄
+        }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
