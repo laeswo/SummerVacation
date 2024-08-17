@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Fake_item : MonoBehaviour
 {
-    public character player;
+    public Hwang_character player;
 
     public GameObject effect;
 

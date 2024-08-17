@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class come_wall : MonoBehaviour
 {
     public bool char_triger;
-    private character player;
+    private Hwang_character player;
     public Transform spawner;
 
     public float speed;

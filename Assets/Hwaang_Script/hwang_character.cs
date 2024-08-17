@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class character : MonoBehaviour
+public class Hwang_character : MonoBehaviour
 {
     public float speed;
     public float jumpForce = 6f;
