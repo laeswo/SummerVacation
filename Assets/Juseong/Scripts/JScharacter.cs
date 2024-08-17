@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class character : MonoBehaviour
+public class JScharacter : MonoBehaviour
 {
-    public float speed;
+    public float speed = 5;
     public float jumpForce = 6f;
     private Rigidbody2D rb;
     private Animator animator;
@@ -13,34 +13,19 @@ public class character : MonoBehaviour
     public bool delay;
     private float time;
     private int timer = 1;
-    public GameObject spawner;
-    public bool touch=false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        speed = 1f;
+        // speed = 1f;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
-    {
-     
-        if (other.gameObject.CompareTag("fall"))
-        {
-            Debug.Log("DDD");
-            touch = true;
-
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
-
-        
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -53,16 +38,13 @@ public class character : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(speed);
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        if (isGrounded)
-        {
+        /*Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+        rb.AddForce(movement * speed, ForceMode2D.Impulse);*/
+        
+        rb.velocity = new Vector2(moveHorizontal * speed, rb.velocity.y);
 
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
-            rb.AddForce(movement * speed);
-
-        }
 
         if (moveHorizontal != 0)
         {
@@ -70,17 +52,18 @@ public class character : MonoBehaviour
         }
         else
         {
-            // animator.SetBool("walk", false);
+           // animator.SetBool("walk", false);
         }
 
         if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            // animator.SetBool("jump", true);
+           // animator.SetBool("jump", true);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isGrounded = false;
         }
         else
         {
-            //Wz` animator.SetBool("jump", false);
+           //Wz` animator.SetBool("jump", false);
         }
         if (delay == true)
         {
@@ -93,13 +76,7 @@ public class character : MonoBehaviour
 
             }
         }
-        while (touch)
-        {
-            transform.position = spawner.transform.position;
-            if (transform.position.y == spawner.transform.position.y)
-            {
-                touch = false;
-            }
-        }
     }
+
+    public bool Grounded { get { return isGrounded; } }
 }
