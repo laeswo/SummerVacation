@@ -10,7 +10,7 @@ public class cango : MonoBehaviour
     public Text text;
     public GameObject player;
     private bool go = false;
-
+    public string scenename;
     public int apple;
     // Start is called before the first frame update
     void Start()
@@ -22,19 +22,27 @@ public class cango : MonoBehaviour
     void Update()
     {
         Debug.Log(cango1);
-        if (cango1<apple)
+        if (text == null)
         {
-            text.text = cango1 + "/"+apple;
+            
         }
-        else if(cango1>=apple)
+        else
         {
-            text.text = cango1 + "/" + apple;
-            go = true;
+            if (cango1<apple)
+            {
+                text.text = cango1 + "/"+apple;
+            }
+            else if(cango1>=apple)
+            {
+                text.text = cango1 + "/" + apple;
+                go = true;
+            }
         }
+       
 
         if (go && player.transform.position == transform.position)
         {
-            SceneManager.LoadScene("stage2");
+            SceneManager.LoadScene(scenename);
         }
         
     }
