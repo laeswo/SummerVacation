@@ -10,6 +10,7 @@ public class Hwang_character : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
+
     public bool delay;
     private float time;
     private int timer = 1;
@@ -38,9 +39,7 @@ public class Hwang_character : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-        }
-
-        
+        } 
     }
 
     private void OnCollisionExit2D(Collision2D other)

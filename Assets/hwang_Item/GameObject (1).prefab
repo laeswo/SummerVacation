@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3375568672476429960}
   - component: {fileID: 9223059290723707469}
+  - component: {fileID: 1567688907031832601}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: fall
@@ -77,3 +78,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 95.56869, y: 6.165867}
   m_EdgeRadius: 0
+--- !u!114 &1567688907031832601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444489312143264084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddad775b938d3e46a6f0816f7aa285b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
