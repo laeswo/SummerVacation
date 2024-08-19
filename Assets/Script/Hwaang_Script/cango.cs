@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,10 +41,14 @@ public class cango : MonoBehaviour
         }
        
 
-        if (go && player.transform.position == transform.position)
+   
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(scenename);
+            if(go) SceneManager.LoadScene(scenename);
         }
-        
     }
 }
