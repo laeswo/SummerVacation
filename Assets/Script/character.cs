@@ -9,8 +9,8 @@ public class Character : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private Animator animator;
-    private SpriteRenderer spriteRenderer; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
-        
+    private SpriteRenderer spriteRenderer; // ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ Ãß°¡
+
     public bool delay;
     private float time;
     private int timer = 1;
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        spriteRenderer = GetComponent<SpriteRenderer>(); // ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ ÃÊ±âÈ­
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
             {
                 time = 0;
                 delay = false;
-                speed = 10;
+                speed = 1;
 
             }
         }
@@ -51,36 +51,36 @@ public class Character : MonoBehaviour
 
     private void Move()
     {
-        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ Ã³ï¿½ï¿½
+        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw »ç¿ëÀ¸·Î Áï°¢ÀûÀÎ ÀÔ·Â Ã³¸®
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+        // ¹æÇâ ÀüÈ¯
         if (move > 0)
         {
-            spriteRenderer.flipX = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
+            spriteRenderer.flipX = false; // ¿À¸¥ÂÊÀ» ¹Ù¶óº½
         }
         else if (move < 0)
         {
-            spriteRenderer.flipX = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
+            spriteRenderer.flipX = true; // ¿ÞÂÊÀ» ¹Ù¶óº½
         }
 
-        // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+        // Á¡ÇÁ Ã³¸®
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            isGrounded = false; // Á¡ÇÁ ÁßÀÌ¹Ç·Î Áö¸é¿¡ ´êÁö ¾ÊÀ½
         }
     }
 
     private void Animate()
     {
-        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ Ã³ï¿½ï¿½
+        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw »ç¿ëÀ¸·Î Áï°¢ÀûÀÎ ÀÔ·Â Ã³¸®
 
-        // ï¿½È±ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
-        animator.SetBool("walk", move != 0); // moveï¿½ï¿½ 0ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½È±ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // °È±â ¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤
+        animator.SetBool("walk", move != 0); // move°¡ 0ÀÌ ¾Æ´Ñ °æ¿ì¿¡¸¸ °È±â ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
 
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
-        animator.SetBool("jump", !isGrounded); // isGrounded ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // Á¡ÇÁ ¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤
+        animator.SetBool("jump", !isGrounded); // isGrounded »óÅÂ¿¡ µû¶ó Á¡ÇÁ ¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤
     }
 
     private void OnCollisionEnter2D(Collision2D other)
