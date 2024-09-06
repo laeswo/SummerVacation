@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class spike : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class spike : MonoBehaviour
         {
             collision.GetComponent<Transform>().position = startpoint.GetComponent<Transform>().position;
             collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            SceneScript.instance.count++;
+            if (SceneScript.instance.count >= 5) SceneScript.instance.Load();
         }
     }
 }

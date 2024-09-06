@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float speed = 10f;
-    public float jumpForce = 5f;
+    public float jumpForce = 12f;
     private Rigidbody2D rb;
     private bool isGrounded;
     private Animator animator;
@@ -15,7 +15,11 @@ public class Character : MonoBehaviour
     private float time;
     private int timer = 1;
     public GameObject spawner;
-    public bool touch = false;
+
+    public float laserRange = 6f;
+    public float DownlaserRange = 2.5f;
+    public float debugDistance = 0.3f;
+    private LayerMask platformLayerMask;
 
     void Start()
     {
@@ -28,6 +32,7 @@ public class Character : MonoBehaviour
     {
         Move();
         Animate();
+        raycast();
         if (delay == true)
         {
             time += Time.deltaTime;
@@ -35,16 +40,8 @@ public class Character : MonoBehaviour
             {
                 time = 0;
                 delay = false;
-                speed = 1;
+                speed = 10;
 
-            }
-        }
-        while (touch)
-        {
-            transform.position = spawner.transform.position;
-            if (transform.position.y == spawner.transform.position.y)
-            {
-                touch = false;
             }
         }
     }
@@ -83,16 +80,29 @@ public class Character : MonoBehaviour
         animator.SetBool("jump", !isGrounded); // isGrounded 상태에 따라 점프 애니메이션 설정
     }
 
+    private void raycast()
+    {
+
+        // 레이저의 방향과 시작 위치를 설정하기
+        Vector2 direction = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+        Vector2 startPosition = transform.position;
+
+        int layerMask = LayerMask.GetMask("Target");
+
+
+        // 플레이어 점프하고도 쏘기???
+        if (!isGrounded)
+        {
+            RaycastHit2D downHit = Physics2D.Raycast(startPosition, Vector2.down, DownlaserRange, platformLayerMask);
+            Debug.DrawRay(startPosition, Vector2.down * DownlaserRange, Color.magenta);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-        }
-        if(other.gameObject.CompareTag("fall"))
-        {
-            Debug.Log("DDD");
-            touch = true;
         }
     }
 

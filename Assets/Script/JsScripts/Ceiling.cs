@@ -12,8 +12,8 @@ public class Ceiling : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("load scene");
-            SceneManager.LoadScene("JsStage1");
+            SceneScript.instance.count++;
+            SceneScript.instance.Load();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

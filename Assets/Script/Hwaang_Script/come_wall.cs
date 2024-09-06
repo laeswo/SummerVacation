@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class come_wall : MonoBehaviour
 {
     public bool char_triger;
-    private Hwang_character player;
+    private Character player;
     public Transform spawner;
 
     public float speed;
@@ -32,7 +32,6 @@ public class come_wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("이으아아아아아"+char_triger);
         if (char_triger)
         {
             
@@ -49,7 +48,7 @@ public class come_wall : MonoBehaviour
                         transform.position += new Vector3(speed,0,0);
                     }
                     else
-                    {Debug.Log("삐용삐용");
+                    {
                         transform.position = spawner.transform.position;
                         char_triger = false;
                     }

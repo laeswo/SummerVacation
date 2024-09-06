@@ -9,6 +9,33 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/JsStage2.unity
+    guid: 869faafd5674bfc4380998d2df43db57
+  - enabled: 1
     path: Assets/Scenes/hwangtae_2.unity
     guid: 1814554aa8a6edc4286b661eb82c1761
+  - enabled: 0
+    path: Assets/Scenes/1.unity
+    guid: 737785f14e69afb448515edf494a178f
+  - enabled: 0
+    path: Assets/Scenes/2.unity
+    guid: f3889e93b6434f34085936c050a50c6f
+  - enabled: 1
+    path: Assets/Scenes/hwang_tae3.unity
+    guid: 9ca7ab7787b997946ba8e0e23938355d
+  - enabled: 1
+    path: Assets/Scenes/JsStage1.unity
+    guid: 9297c830cbac0b44a9fb5c97631f7eb5
+  - enabled: 1
+    path: Assets/Scenes/stage1.unity
+    guid: 62d3259035a441d419e742575541c4bf
+  - enabled: 1
+    path: Assets/Scenes/hwangtae.unity
+    guid: 99db2c131e4f29849b890d0d2cf54ab8
+  - enabled: 1
+    path: Assets/Scenes/stage2.unity
+    guid: 5529b941e082dc6458e3bd6d73f054bc
+  - enabled: 1
+    path: Assets/Scenes/stage3.unity
+    guid: e70caceb8d2e204439ab71194f8feb81
   m_configObjects: {}

@@ -8,9 +8,7 @@ public class cango : MonoBehaviour
 {
     public int cango1 = 0;
     public Text text;
-    public GameObject player;
     private bool go = false;
-    public string scenename;
     public int apple;
     // Start is called before the first frame update
     void Start()
@@ -21,10 +19,9 @@ public class cango : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(cango1);
         if (text == null)
         {
-            
+            go = true;
         }
         else
         {
@@ -39,11 +36,14 @@ public class cango : MonoBehaviour
             }
         }
        
-
-        if (go && player.transform.position == transform.position)
-        {
-            SceneManager.LoadScene(scenename);
-        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         
+        if (go && collision.CompareTag("Player"))
+        {
+            SceneScript.instance.index++;
+            SceneScript.instance.Load();
+        }
     }
 }
