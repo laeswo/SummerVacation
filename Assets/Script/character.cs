@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private Animator animator;
-    private SpriteRenderer spriteRenderer; // ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ Ãß°¡
+    private SpriteRenderer spriteRenderer; // ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ ì¶”ê°€
 
     public bool delay;
     private float time;
@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); // ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ ÃÊ±âÈ­
+        spriteRenderer = GetComponent<SpriteRenderer>(); // ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ ì´ˆê¸°í™”
     }
 
     void Update()
@@ -48,49 +48,49 @@ public class Character : MonoBehaviour
 
     private void Move()
     {
-        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw »ç¿ëÀ¸·Î Áï°¢ÀûÀÎ ÀÔ·Â Ã³¸®
+        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw ì‚¬ìš©ìœ¼ë¡œ ì¦‰ê°ì ì¸ ì…ë ¥ ì²˜ë¦¬
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
-        // ¹æÇâ ÀüÈ¯
+        // ë°©í–¥ ì „í™˜
         if (move > 0)
         {
-            spriteRenderer.flipX = false; // ¿À¸¥ÂÊÀ» ¹Ù¶óº½
+            spriteRenderer.flipX = false; // ì˜¤ë¥¸ìª½ì„ ë°”ë¼ë´„
         }
         else if (move < 0)
         {
-            spriteRenderer.flipX = true; // ¿ŞÂÊÀ» ¹Ù¶óº½
+            spriteRenderer.flipX = true; // ì™¼ìª½ì„ ë°”ë¼ë´„
         }
 
-        // Á¡ÇÁ Ã³¸®
+        // ì í”„ ì²˜ë¦¬
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false; // Á¡ÇÁ ÁßÀÌ¹Ç·Î Áö¸é¿¡ ´êÁö ¾ÊÀ½
+            isGrounded = false; // ì í”„ ì¤‘ì´ë¯€ë¡œ ì§€ë©´ì— ë‹¿ì§€ ì•ŠìŒ
         }
     }
 
     private void Animate()
     {
-        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw »ç¿ëÀ¸·Î Áï°¢ÀûÀÎ ÀÔ·Â Ã³¸®
+        float move = Input.GetAxisRaw("Horizontal"); // GetAxisRaw ì‚¬ìš©ìœ¼ë¡œ ì¦‰ê°ì ì¸ ì…ë ¥ ì²˜ë¦¬
 
-        // °È±â ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
-        animator.SetBool("walk", move != 0); // move°¡ 0ÀÌ ¾Æ´Ñ °æ¿ì¿¡¸¸ °È±â ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+        // ê±·ê¸° ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
+        animator.SetBool("walk", move != 0); // moveê°€ 0ì´ ì•„ë‹Œ ê²½ìš°ì—ë§Œ ê±·ê¸° ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
 
-        // Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
-        animator.SetBool("jump", !isGrounded); // isGrounded »óÅÂ¿¡ µû¶ó Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
+        // ì í”„ ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
+        animator.SetBool("jump", !isGrounded); // isGrounded ìƒíƒœì— ë”°ë¼ ì í”„ ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
     }
 
     private void raycast()
     {
 
-        // ·¹ÀÌÀúÀÇ ¹æÇâ°ú ½ÃÀÛ À§Ä¡¸¦ ¼³Á¤ÇÏ±â
+        // ë ˆì´ì €ì˜ ë°©í–¥ê³¼ ì‹œì‘ ìœ„ì¹˜ë¥¼ ì„¤ì •í•˜ê¸°
         Vector2 direction = spriteRenderer.flipX ? Vector2.left : Vector2.right;
         Vector2 startPosition = transform.position;
 
         int layerMask = LayerMask.GetMask("Target");
 
 
-        // ÇÃ·¹ÀÌ¾î Á¡ÇÁÇÏ°íµµ ½î±â???
+        // í”Œë ˆì´ì–´ ì í”„í•˜ê³ ë„ ì˜ê¸°???
         if (!isGrounded)
         {
             RaycastHit2D downHit = Physics2D.Raycast(startPosition, Vector2.down, DownlaserRange, platformLayerMask);
